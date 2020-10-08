@@ -65,3 +65,32 @@ items{
     width: 25%;
     height: auto;
 }
+body.dark{
+    background-color: #1d1d1d;
+    color: white;
+}
+
+body.dark .card{
+    background-color: blueviolet;
+    border-radius: 10px;
+    display: flex;
+    margin: 0px 50px;
+    height: 100px;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    flex-direction: column;
+}
+body.dark .image img{
+    filter: invert(100%);
+}
+.darkmode{
+    display: flex;
+    justify-content: flex-end;
+}
+.head{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}

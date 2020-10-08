@@ -4,9 +4,13 @@ const cases = document.getElementById('cases');
 const containerchart = document.getElementById('containerchart');
 const url = (location) => `https://api.covid19api.com/total/dayone/country/${location}`;
 const locurl = "https://api.covid19api.com/summary";
+const toggle = document.getElementById('toggle');
 
+toggle.addEventListener("change", (e) => {
+    document.body.classList.toggle('dark', e.target.checked);
+})
 
-async function getLocation(){
+async function getLocation() {
     const resploc = await fetch(locurl);
     const locData = await resploc.json();
     l = locData.Countries.length;
@@ -37,14 +41,15 @@ function addCases(data) {
     cases.appendChild(dataitem);
 
     const chartItem = document.createElement('canvas');
-    chartItem.id="myChart";
-    containerchart.innerHTML="";
+    chartItem.id = "myChart";
+    containerchart.innerHTML = "";
     containerchart.appendChild(chartItem);
     const ctx = document.getElementById('myChart').getContext('2d');
     const chart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ['Active', 'Confirmed', 'Death', 'Recovered'],
+            fontColor: "#f0f",
             datasets: [{
                 label: data.Country,
                 data: [data.Active, data.Confirmed, data.Deaths, data.Recovered],
@@ -67,14 +72,22 @@ function addCases(data) {
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        fontColor: "#f0f",
+                        fontStyle: "bold",
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: "#f0f",
+                        fontStyle: "bold",
                     }
                 }]
             }
         }
     });
-    
-  
+
+
 }
 
 form.addEventListener('submit', (e) => {
